@@ -1,0 +1,36 @@
+class Solution {
+    public int maxCount(int[] banned, int n, int maxSum) {
+        Arrays.sort(banned);
+        int i = 1,j=0;
+        long ans = 0,sum=0;
+        for(int k=0;k<banned.length;k++)
+        System.out.print(banned[k]+" ");
+        while(i <= n && sum+i <= maxSum && j<banned.length){
+            if(i == banned[j])
+            {
+                while(j<banned.length && i == banned[j])
+                    j++;
+                i++;
+                continue;
+            }
+            
+            sum+=i;
+            ans++;
+            // System.out.println(sum + " " + i);
+        
+            i++;
+        }
+        if(sum+i > maxSum && i > n)
+            return (int)ans;
+
+        while(i<=n && sum+i <= maxSum)
+        {
+            sum+=i;
+            ans++;
+            i++;
+            // System.out.print(sum + " "+ i + "\n");
+        }
+// 109718563
+        return (int)ans;
+    }
+}
